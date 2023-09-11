@@ -1,0 +1,144 @@
+---
+title: "Predictive Analysis Project - Freemium To Premium Subscribers using KNN"
+author: "Allison Liu"
+output: html_document
+date: "2023-07-23"
+---
+| Workflow of building predictive models - KNN:
+| 1. Import the XYZData.csv
+| 2. Clean data and EDA
+| 3. Split data into training and testing and oversampling
+| 4. Build the model 
+| 5. Make prediction
+| 6. Measure performance
+| 7. Model tuning
+
+```{r}
+library(dplyr)
+library(caret)
+library(rpart)
+library(rpart.plot)
+library(class)
+library(pROC)
+library(e1071)
+library(ROSE)
+library(FSelectorRcpp)
+
+XYZData = read.csv("XYZData.csv", stringsAsFactors = TRUE)
+XYZData$adopter <- factor(XYZData$adopter)
+```
+
+# Train a K-NN model
+| 1. Split data into Train and Split
+| 2. Normalization
+| 3. Oversampling
+| 4. Feature Selection: Filter Approach
+| 5. Build the Model
+
+```{r}
+# Split the dataset into 70% training and 30% testing
+set.seed(123)
+train_rows = createDataPartition(y = XYZData$adopter, p = 0.70, list = FALSE)
+XYZData_train = XYZData[train_rows,]
+XYZData_test = XYZData[-train_rows,]
+
+# normalize
+normalize = function(x){
+  return ((x - min(x))/(max(x) - min(x)))
+}
+XYZ_normalized = XYZData %>% mutate_at(2:26, normalize)
+XYZ_normalized_train = XYZ_normalized[train_rows,]
+XYZ_normalized_test = XYZ_normalized[-train_rows,]
+
+# Oversampling
+XYZ_train_oversampling <- ovun.sample(adopter ~ ., data = XYZ_normalized_train, 
+                                      method = "over", N = 36000)$data
+
+# Feature Selection: Filter Approach
+  IG = information_gain(adopter ~ ., data = XYZ_train_oversampling)
+  # select top 10
+  topK = cut_attrs(IG, k = 10)
+  XYZ_topK_train = XYZ_train_oversampling %>% select(topK, adopter, user_id)
+  XYZ_topK_test = XYZ_normalized_test %>% select(topK, adopter, user_id)
+```
+
+
+# Build a KNN model
+```{r}
+# KNN
+XYZ_topK_train$adopter <- factor(XYZ_topK_train$adopter)
+XYZ_topK_test$adopter <- factor(XYZ_topK_test$adopter)
+
+mod_knn = train(x = XYZ_topK_train,
+                y = XYZ_topK_train$adopter, 
+                method = "knn",
+                preProcess = c("center", "scale"),
+                trControl = trainControl(method = "repeatedcv",
+                                         number = 10,
+                                         repeats = 3)
+                )
+# View the fitted model.
+mod_knn
+plot(mod_knn)
+```
+
+# Make Prediction and Evaluated the Model
+We want to predict who will be the Premium Subscribers using testing data and the best k=5. Also, I use confusion matrix to evaluate the model.
+```{r}
+# Use model to predict classes for the test set
+set.seed(123)
+pred_cls = predict(mod_knn, XYZ_topK_test, k = 5)
+head(pred_cls, 50)
+
+confusionMatrix(data = pred_cls,
+                reference = XYZ_topK_test[,11],
+                mode = "prec_recall", positive = "1")
+```
+| Accuracy: 0.9827, which means that 98.27% the model is correct overall.
+| Precision: 0.70777, which means that when predicting the target class, the model has 70.78% to predict correctly.
+| Recall: 0.90693, mentions that the model can find all objects of the target class with 90.70% chance.
+
+
+# Plot Probability Distribution of K-NN - First two variables
+We want to plot the test data colored by the class they were assigned to by the kNN classifier as background, the training data (using a different symbol), and the decision boundary.
+```{r}
+library(class)
+library(ggplot2)
+knn = knn(XYZ_topK_train[,c(1:10)], XYZ_topK_test[,c(1:10)], XYZ_topK_train[,11],
+k = 5, prob = TRUE)
+prob <- attr(knn, "prob")
+df1 <- mutate(XYZ_topK_test[,c(1:3)], prob = prob, adopter = 0,
+              pred_cls)
+str(df1)
+
+ggplot(data = df1, aes(x = lovedTracks, y = delta_songsListened)) +
+geom_point(aes(color = as.factor(pred_cls))) +
+theme_bw()
+
+```
+
+# Summary results of model
+
+```{r}
+data = XYZ_topK_test %>% mutate(Pre = pred_cls)
+final = left_join(data, XYZData[,c(1, 2, 4, 10)], by = "user_id") %>% filter(data$adopter == '1', data$Pre == '1')
+                                                                               summary(final$age)
+summary(final$lovedTracks.y)
+```
+
+```{r}
+final_age <- final %>%
+mutate(Age = case_when(
+age < 20 ~ '~20',
+age < 30 ~ '20-29',
+age < 40 ~ '30-39',
+age < 50 ~ '40-49',
+age < 60 ~ '50~'))
+
+final_group = final_age %>% group_by(Age) %>%
+summarise(Total_Users = n())
+final_group %>%
+ggplot(aes(x= Age, y=Total_Users, fill=Age)) +
+geom_bar(stat = "identity") +
+geom_text(aes(label = Total_Users), vjust = 0)
+```
