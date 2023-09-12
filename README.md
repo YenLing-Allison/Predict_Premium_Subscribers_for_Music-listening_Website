@@ -26,7 +26,7 @@ Dataset: XYZData.csv
 
 Executive Summary: 
 
-Technical Document(code): 
-| Decision Tree and Logistic Regression: Freemium_to_Premium_decisiontree_logi.Rmd 
-| K-NN: Freemium_to_Premium_knn.Rmd
-| Raandom Forest: Freemium_to_Premium_rf.Rmd
+Technical Document(code):  
+Decision Tree and Logistic Regression: Freemium_to_Premium_decisiontree_logi.Rmd  
+K-NN: Freemium_to_Premium_knn.Rmd  
+Random Forest: Freemium_to_Premium_rf.Rmd  
