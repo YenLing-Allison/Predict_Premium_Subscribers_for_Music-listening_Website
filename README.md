@@ -27,6 +27,6 @@ Dataset: XYZData.csv
 Executive Summary: 
 
 Technical Document(code):  
-Decision Tree and Logistic Regression: Freemium_to_Premium_decisiontree_logi.Rmd  
-K-NN: Freemium_to_Premium_knn.Rmd  
-Random Forest: Freemium_to_Premium_rf.Rmd  
+Decision Tree and Logistic Regression: [Freemium_to_Premium_decisiontree_logi.Rmd](https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/47e0f1a0b117158d7c052c17bba34f646746d596/Freemium_to_Premium_decisiontree_logi.Rmd)https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/47e0f1a0b117158d7c052c17bba34f646746d596/Freemium_to_Premium_decisiontree_logi.Rmd  
+K-NN: [Freemium_to_Premium_knn.Rmd](https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/47e0f1a0b117158d7c052c17bba34f646746d596/Freemium_to_Premium_knn.Rmd)https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/47e0f1a0b117158d7c052c17bba34f646746d596/Freemium_to_Premium_knn.Rmd    
+Random Forest: https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/47e0f1a0b117158d7c052c17bba34f646746d596/Freemium_to_Premium_rf.Rmd    
