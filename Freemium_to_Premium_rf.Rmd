@@ -1,0 +1,90 @@
+---
+title: "Predictive Analysis Project - Freemium To Premium Subscribers using Random Forest"
+author: "Allison Liu"
+date: "2023-07-22"
+output: html_document
+---
+
+# Load Package
+```{r}
+library(randomForest)
+library(ROSE)
+library(caret)
+
+XYZData_rf = read.csv("XYZData.csv", stringsAsFactors = TRUE)
+head(XYZData_rf, 20)
+
+# Make dependent variable as a factor (categorical)
+XYZData_rf$adopter = as.factor(XYZData_rf$adopter)
+
+str(XYZData_rf)
+
+#find number of rows with missing values
+sum(!complete.cases(XYZData_rf))
+```
+
+## Split Data and  oversampling
+```{r pressure, echo=FALSE}
+train_rows = createDataPartition(y = XYZData_rf$adopter, p = 0.70, list = FALSE)
+XYZData_train_rf = XYZData_rf[train_rows,]
+XYZData_test_rf = XYZData_rf[-train_rows,]
+
+#set.seed(123)
+train_balanced_over = ovun.sample(adopter ~ ., data = XYZData_train_rf, method = "over",N = 33600)$data
+```
+
+## Build a model - Random Forest
+```{r}
+#Run the random forest model
+set.seed(71)
+rf <-randomForest(adopter~.,data=train_balanced_over, ntree=500) 
+print(rf)
+
+# Prediction and Confusion Matrix - Test Data
+p2 <- predict(rf, XYZData_test_rf)
+confusionMatrix(p2, XYZData_test_rf$adopter, positive = '1')
+
+plot(rf)
+
+#Select mtry value with minimum out of bag(OOB) error.
+mtry <- tuneRF(train_balanced_over[,-26], train_balanced_over[,26],
+       stepFactor = 0.5,
+       plot = TRUE,
+       ntreeTry = 150,
+       trace = TRUE,
+       improve = 0.05)
+best.m <- mtry[mtry[, 2] == min(mtry[, 2]), 1]
+print(mtry)
+print(best.m)
+
+```
+
+## No. of nodes for the trees
+```{r pressure, echo=FALSE}
+hist(treesize(rf),
+     main = "No. of Nodes for the Trees",
+     col = "green")
+# Variable Importance
+varImpPlot(rf,
+           sort = T,
+           n.var = 10,
+           main = "Top 10 - Variable Importance")
+importance(rf)
+# Meanderings
+```
+
+
+## Multi-dimensional Scaling Plot of Proximity Matrix
+```{r}
+library(caret)
+ctrl <- trainControl(method = "cv",  
+                     number = 10, 
+                     verboseIter = TRUE)
+rf_model <- train(adopter ~ ., data = train_balanced_over,
+                  method = "rf",      
+                  trControl = ctrl)   
+print(rf_model)
+```
+Reference: https://www.r-bloggers.com/2021/04/random-forest-in-r/
+https://www.geeksforgeeks.org/random-forest-approach-in-r-programming/
+
