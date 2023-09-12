@@ -22,8 +22,11 @@ Dataset contains 41,540 records (1540 adopters and 40,000 non-adopters), each re
 a different user of the XYZ website who was targeted in the previous marketing campaign.
 Each record is described with 25 attributes.
 
-Dataset: 
+Dataset: XYZData.csv
 
 Executive Summary: 
 
-Technical Document: 
+Technical Document(code): 
+Decision Tree and Logistic Regression: Freemium_to_Premium_decisiontree_logi.Rmd 
+K-NN: Freemium_to_Premium_knn.Rmd
+Raandom Forest: Freemium_to_Premium_rf.Rmd
