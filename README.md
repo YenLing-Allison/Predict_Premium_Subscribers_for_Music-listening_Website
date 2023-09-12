@@ -1,4 +1,4 @@
-# Predictive-Analysis-Projects
+# Predict Premium Subscribers Projects
 echo "# Predictive-Analysis-Projects" >> README.md
 git init
 git add README.md
