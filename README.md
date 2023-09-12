@@ -22,11 +22,11 @@ Dataset contains 41,540 records (1540 adopters and 40,000 non-adopters), each re
 a different user of the XYZ website who was targeted in the previous marketing campaign.
 Each record is described with 25 attributes.
 
-Dataset: XYZData.csv
+Dataset: [XYZData.csv](https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/676ace52e7f0979b2d143101ce2190e462b62ac9/XYZData.csv)
 
 Executive Summary: 
 
-Technical Document(code):  
+Technical Document (code):  
 Decision Tree and Logistic Regression: [[[Freemium_to_Premium_decisiontree_logi.Rmd] ] ](https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/9b72eee55cc9518ae45c8b294550107b128cac40/Freemium_to_Premium_decisiontree_logi.Rmd)      
 K-NN: [[[Freemium_to_Premium_knn.Rmd] ]  ](https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/9b72eee55cc9518ae45c8b294550107b128cac40/Freemium_to_Premium_knn.Rmd)  
-Random Forest: [[Freemium_to_Premium_rf.Rmd] ](https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/db24d6f22c4d1eeb7ca8cdbaa43f19e28a887414/Freemium_to_Premium_rf.Rmd)https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/db24d6f22c4d1eeb7ca8cdbaa43f19e28a887414/Freemium_to_Premium_rf.Rmd   
+Random Forest: [[Freemium_to_Premium_rf.Rmd] ](https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/db24d6f22c4d1eeb7ca8cdbaa43f19e28a887414/Freemium_to_Premium_rf.Rmd)  
