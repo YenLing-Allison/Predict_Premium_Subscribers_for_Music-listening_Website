@@ -21,6 +21,6 @@ Each record is described with 25 attributes.
 
 Dataset: [XYZData.csv](https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/676ace52e7f0979b2d143101ce2190e462b62ac9/XYZData.csv)
 
-Executive Summary: [Executive%20Summary_Predictive.pdf](https://github.com/YenLing-Allison/Predict_Premium_Subscribers_for_Music-listening_Website/blob/15ea47340a78634e3ad3cea27d6d613e1a1eac90/Executive%20Summary_Predictive.pdf)
+Executive Summary: [Executive Summary_Predictive.pdf](https://github.com/YenLing-Allison/Predict_Premium_Subscribers_for_Music-listening_Website/blob/15ea47340a78634e3ad3cea27d6d613e1a1eac90/Executive%20Summary_Predictive.pdf)
 
 Technical Document: [freemium_to_premium_models.R](https://github.com/YenLing-Allison/Predict_Premium_Subscribers_for_Music-listening_Website/blob/359eb3437bae3fca7f484ad95abb0d3fc42013a3/freemium_to_premium_models.R)  
