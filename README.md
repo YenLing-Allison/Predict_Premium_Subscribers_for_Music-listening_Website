@@ -21,9 +21,6 @@ Each record is described with 25 attributes.
 
 Dataset: [XYZData.csv](https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/676ace52e7f0979b2d143101ce2190e462b62ac9/XYZData.csv)
 
-Executive Summary: 
+Executive Summary: [Executive%20Summary_Predictive.pdf](https://github.com/YenLing-Allison/Predict_Premium_Subscribers_for_Music-listening_Website/blob/15ea47340a78634e3ad3cea27d6d613e1a1eac90/Executive%20Summary_Predictive.pdf)
 
-Technical Document:  
-Decision Tree and Logistic Regression: [[[Freemium_to_Premium_decisiontree_logi.Rmd] ] ](https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/9b72eee55cc9518ae45c8b294550107b128cac40/Freemium_to_Premium_decisiontree_logi.Rmd)      
-K-NN: [[[Freemium_to_Premium_knn.Rmd] ]  ](https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/9b72eee55cc9518ae45c8b294550107b128cac40/Freemium_to_Premium_knn.Rmd)  
-Random Forest: [[Freemium_to_Premium_rf.Rmd] ](https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/db24d6f22c4d1eeb7ca8cdbaa43f19e28a887414/Freemium_to_Premium_rf.Rmd)  
+Technical Document: [freemium_to_premium_models.R](https://github.com/YenLing-Allison/Predict_Premium_Subscribers_for_Music-listening_Website/blob/359eb3437bae3fca7f484ad95abb0d3fc42013a3/freemium_to_premium_models.R)  
