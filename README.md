@@ -18,7 +18,7 @@ Each record is described with 25 attributes.
 
 Dataset: [XYZData.csv](https://github.com/YenLing-Allison/Predict-Premium-Subscribers-for-Music-listening-Website/blob/676ace52e7f0979b2d143101ce2190e462b62ac9/XYZData.csv)
 
-# Analysis process
+# Analysis Process
 1. Data Preprocessing   
 -  Data cleaning  
 -  Data visulization  
