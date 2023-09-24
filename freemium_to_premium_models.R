@@ -7,7 +7,7 @@ output: html_document
 | Workflow of building predictive models:
 | 1. Import the XYZData.csv
 | 2. Clean data and EDA
-| 3. Split data into training and testing and oversampling
+| 3. Cross Validation
 | 4. Build the models 
 | 5. Make prediction
 | 6. Measure performance
